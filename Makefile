@@ -42,3 +42,11 @@ build_rtls:
 
 clean_rtls:
 	make -C RTLs clean
+
+tag:
+	find . -type d -a ! \( -type d -empty \) -a ! \( -name \.git -prune \) -a ! \( -name lib -prune \) -a ! \( -name obj -prune \) -exec sh -c "cd \"{}\"; if test ! -f .keep; then ctags --extra=+q --fields=+ani --C++-kinds=+p *; fi" \;
+	ctags --file-scope=no -R
+
+cleantag:
+	find . -type d -a ! \( -type d -empty \) -a ! \( -name \.git -prune \) -a ! \( -name lib -prune \) -a ! \( -name obj -prune \) -exec sh -c "cd \"{}\"; rm -f tags" \;
+
